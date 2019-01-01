@@ -103,11 +103,10 @@
 		371B9BB321DA982800621D83 /* TopAlbums */ = {
 			isa = PBXGroup;
 			children = (
+				371B9BEC21DC005100621D83 /* View */,
 				371B9BE721DAA01100621D83 /* ViewModel */,
 				371B9BE421DA9E1400621D83 /* Model */,
 				371B9BB421DA982800621D83 /* AppDelegate.swift */,
-				371B9BB621DA982800621D83 /* MasterViewController.swift */,
-				371B9BB821DA982800621D83 /* DetailViewController.swift */,
 				371B9BBD21DA982B00621D83 /* Assets.xcassets */,
 				371B9BBF21DA982B00621D83 /* LaunchScreen.storyboard */,
 				371B9BC221DA982B00621D83 /* Info.plist */,
@@ -148,6 +147,15 @@
 				371B9BE821DAA09C00621D83 /* AlbumsViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		371B9BEC21DC005100621D83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				371B9BB621DA982800621D83 /* MasterViewController.swift */,
+				371B9BB821DA982800621D83 /* DetailViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
