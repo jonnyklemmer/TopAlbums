@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		371B9BB521DA982800621D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BB421DA982800621D83 /* AppDelegate.swift */; };
-		371B9BB721DA982800621D83 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BB621DA982800621D83 /* MasterViewController.swift */; };
 		371B9BB921DA982800621D83 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BB821DA982800621D83 /* DetailViewController.swift */; };
 		371B9BBE21DA982B00621D83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 371B9BBD21DA982B00621D83 /* Assets.xcassets */; };
 		371B9BC121DA982B00621D83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 371B9BBF21DA982B00621D83 /* LaunchScreen.storyboard */; };
 		371B9BCC21DA982B00621D83 /* TopAlbumsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BCB21DA982B00621D83 /* TopAlbumsTests.swift */; };
 		371B9BD721DA982B00621D83 /* TopAlbumsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BD621DA982B00621D83 /* TopAlbumsUITests.swift */; };
 		371B9BE621DA9E2200621D83 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BE521DA9E2200621D83 /* Album.swift */; };
-		371B9BE921DAA09C00621D83 /* AlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BE821DAA09C00621D83 /* AlbumsViewModel.swift */; };
 		371B9BEB21DBF28500621D83 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BEA21DBF28400621D83 /* AlbumService.swift */; };
+		371DB11721DC0B8900CD756A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BB621DA982800621D83 /* MasterViewController.swift */; };
+		371DB11821DC0B9200CD756A /* AlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BE821DAA09C00621D83 /* AlbumsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,10 +289,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				371B9BB921DA982800621D83 /* DetailViewController.swift in Sources */,
-				371B9BB721DA982800621D83 /* MasterViewController.swift in Sources */,
 				371B9BB521DA982800621D83 /* AppDelegate.swift in Sources */,
+				371DB11821DC0B9200CD756A /* AlbumsViewModel.swift in Sources */,
+				371DB11721DC0B8900CD756A /* MasterViewController.swift in Sources */,
 				371B9BE621DA9E2200621D83 /* Album.swift in Sources */,
-				371B9BE921DAA09C00621D83 /* AlbumsViewModel.swift in Sources */,
 				371B9BEB21DBF28500621D83 /* AlbumService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
