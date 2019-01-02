@@ -73,7 +73,8 @@ class DetailViewController: UIViewController {
     }
     
     private func setupStackViewConstraints(_ stackView: UIStackView) {
-        stackView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        stackView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                           constant: 20.0).isActive = true
         stackView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                                               constant: -20.0).isActive = true
         

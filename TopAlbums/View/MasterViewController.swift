@@ -22,6 +22,15 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+        fetchAlbums()
+    }
+    
+    @objc private func handleRefresh() {
+        fetchAlbums()
+    }
+    
+    private func setupView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.estimatedRowHeight = 100.0
         tableView.rowHeight = 100.0
@@ -31,13 +40,8 @@ class MasterViewController: UITableViewController {
         refreshControl?.beginRefreshing()
         
         title = "iTunes Top 100"
-        
-        fetchAlbums()
     }
     
-    @objc private func handleRefresh() {
-        fetchAlbums()
-    }
     
     private func fetchAlbums() {
         AlbumService().fetchAlbums { [weak self] (albums) in
@@ -49,6 +53,8 @@ class MasterViewController: UITableViewController {
         }
     }
 
+    // MARK:- UITableViewDataSource functions
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel?.numberOfAlbums ?? 0
     }
@@ -80,6 +86,8 @@ class MasterViewController: UITableViewController {
         
         return cell
     }
+    
+    // MARK:- UITableViewDelegate functions
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let albumVM = viewModel?.viewModel(atIndex: indexPath.row) else {
