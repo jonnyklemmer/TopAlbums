@@ -16,6 +16,8 @@ class MasterViewController: UITableViewController {
     }
     
     private let cellReuseIdentifier = "AlbumTableViewCellReuseID"
+    
+    private var imageCache: [String: UIImage] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,15 +63,21 @@ class MasterViewController: UITableViewController {
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "\(albumVM.name)\n\(albumVM.artistName)"
         
-        AlbumService().fetchAlbumImage(url: albumVM.imageUrl) { [weak cell] (data) in
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    cell?.imageView?.image = image
-                    cell?.setNeedsLayout()
+        if let image = imageCache[albumVM.imageUrl] {
+            cell.imageView?.image = image
+            cell.setNeedsLayout()
+        } else {
+            AlbumService().fetchAlbumImage(url: albumVM.imageUrl) { [weak self, weak cell] (data) in
+                if let image = UIImage(data: data) {
+                    self?.imageCache[albumVM.imageUrl] = image
+                    DispatchQueue.main.async {
+                        cell?.imageView?.image = image
+                        cell?.setNeedsLayout()
+                    }
                 }
             }
         }
-
+        
         return cell
     }
     
@@ -80,6 +88,7 @@ class MasterViewController: UITableViewController {
         
         let detailViewController = DetailViewController()
         detailViewController.viewModel = albumVM
+        detailViewController.image = imageCache[albumVM.imageUrl]
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

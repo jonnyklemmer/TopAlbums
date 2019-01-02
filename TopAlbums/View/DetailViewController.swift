@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
     
     private func addCustomViews() {
         let albumImageView = UIImageView(image: image)
+        albumImageView.contentMode = .scaleAspectFit
         albumImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
 
         let albumNameLabel = createLabel(text: viewModel.name,
