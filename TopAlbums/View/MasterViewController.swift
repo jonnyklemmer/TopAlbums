@@ -11,19 +11,39 @@ import UIKit
 class MasterViewController: UITableViewController {
     var viewModel: AlbumListViewModel? {
         didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
+    
+    private let cellReuseIdentifier = "AlbumTableViewCellReuseID"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.estimatedRowHeight = 100.0
+        tableView.rowHeight = 100.0
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        refreshControl?.beginRefreshing()
+        
+        title = "iTunes Top 100"
+        
+        fetchAlbums()
+    }
+    
+    @objc private func handleRefresh() {
+        fetchAlbums()
+    }
+    
+    private func fetchAlbums() {
         AlbumService().fetchAlbums { [weak self] (albums) in
-            let albumVMs = albums.map { AlbumViewModel(withAlbum: $0) }
-            self?.viewModel = AlbumsViewModel(albumViewModels: albumVMs)
+            DispatchQueue.main.async {
+                let albumVMs = albums.map { AlbumViewModel(withAlbum: $0) }
+                self?.viewModel = AlbumListViewModel(albumViewModels: albumVMs)
+                self?.refreshControl?.endRefreshing()
+            }
         }
     }
 
@@ -32,12 +52,24 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+        
         guard let albumVM = viewModel?.viewModel(atIndex: indexPath.row) else {
             return UITableViewCell()
         }
         
-        let cell = UITableViewCell()
-        cell.textLabel?.text = albumVM.name
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = "\(albumVM.name)\n\(albumVM.artistName)"
+        
+        AlbumService().fetchAlbumImage(url: albumVM.imageUrl) { [weak cell] (data) in
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    cell?.imageView?.image = image
+                    cell?.setNeedsLayout()
+                }
+            }
+        }
+
         return cell
     }
 }
