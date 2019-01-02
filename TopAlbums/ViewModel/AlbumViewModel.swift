@@ -16,6 +16,7 @@ struct AlbumViewModel {
     
     let genres: [String]
     let imageUrl: String
+    let albumUrl: String
     
     init(withAlbum album: Album) {
         self.artistName = album.artistName
@@ -25,5 +26,6 @@ struct AlbumViewModel {
         
         self.genres = album.genres.map { $0.name }
         self.imageUrl = album.artworkUrl100
+        self.albumUrl = album.url
     }
 }

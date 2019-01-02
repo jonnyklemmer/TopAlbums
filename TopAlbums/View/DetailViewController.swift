@@ -44,6 +44,7 @@ class DetailViewController: UIViewController {
         let switcherButton = UIButton(type: .system)
         switcherButton.setTitle("View on iTunes Store", for: .normal)
         switcherButton.heightAnchor.constraint(equalToConstant: 44.0).isActive = true
+        switcherButton.addTarget(self, action: #selector(openMusicApp), for: .touchUpInside)
         
         
         let spacerView = UIView()
@@ -68,6 +69,12 @@ class DetailViewController: UIViewController {
         
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20.0).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0).isActive = true
+    }
+    
+    @objc private func openMusicApp() {
+        if let url = URL(string: viewModel.albumUrl), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
     /// Helper function for creating labels. Text is required.
