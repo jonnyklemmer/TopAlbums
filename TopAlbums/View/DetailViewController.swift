@@ -14,7 +14,9 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
+        title = "Details"
         
         addCustomViews()
     }
@@ -68,7 +70,15 @@ class DetailViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0).isActive = true
     }
     
-    /// Helper function for creating labels for UI.
+    /// Helper function for creating labels. Text is required.
+    /// All other parameters will default to values listed below.
+    ///
+    /// - Parameters:
+    ///   - text: Required.
+    ///   - color: UIColor.black
+    ///   - textStyle: UIFont.TextStyle.body
+    ///   - numberOfLines: 0
+    /// - Returns: UILabel object with the given properties pre-configured.
     private func createLabel(text: String,
                              color: UIColor = .black,
                              textStyle: UIFont.TextStyle = .body,
