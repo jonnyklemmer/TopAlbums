@@ -72,4 +72,14 @@ class MasterViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let albumVM = viewModel?.viewModel(atIndex: indexPath.row) else {
+            return
+        }
+        
+        let detailViewController = DetailViewController()
+        detailViewController.viewModel = albumVM
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
