@@ -9,6 +9,7 @@
 import Foundation
 
 typealias AlbumsCompletionHandler = ([Album]) -> Void
+typealias AlbumImageDataCompletionHandler = (Data) -> Void
 
 struct AlbumService {
     func fetchAlbums(completionHandler: @escaping AlbumsCompletionHandler) {
@@ -18,12 +19,11 @@ struct AlbumService {
         }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
             if let data = data {
                 do {
                     // Convert the data to JSON
                     let jsonSerialized = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-                    
+
                     if let json = jsonSerialized,
                         let feed = json["feed"] as? [String : Any],
                         let results = feed["results"]
@@ -40,8 +40,24 @@ struct AlbumService {
                 print(error.localizedDescription)
             }
         }
+
+        task.resume()
+    }
+    
+    func fetchAlbumImage(url: String, completionHandler: @escaping AlbumImageDataCompletionHandler) {
+        guard let url = URL(string: url) else {
+            print("Failed fetch albums when parsing string into URL.")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                completionHandler(data)
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
         
         task.resume()
-
     }
 }
