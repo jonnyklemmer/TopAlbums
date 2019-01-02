@@ -11,7 +11,7 @@ import XCTest
 
 class TopAlbumsTests: XCTestCase {
     
-    var viewModel: AlbumsViewModel!
+    var viewModel: AlbumListViewModel!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -21,7 +21,7 @@ class TopAlbumsTests: XCTestCase {
                                                       name: "name",
                                                       copyright: "copyright",
                                                       genres: [Genre(genreId: "genreId", name: "genre-name")], artworkUrl100: "artworkUrl100", url: "url"))
-        viewModel = AlbumsViewModel(albumViewModels: [albumVM])
+        viewModel = AlbumListViewModel(albumViewModels: [albumVM])
     }
 
     override func tearDown() {

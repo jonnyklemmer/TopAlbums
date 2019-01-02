@@ -9,9 +9,7 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
-
-    var detailViewController: DetailViewController? = nil
-    var viewModel: AlbumsViewModel? {
+    var viewModel: AlbumListViewModel? {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()

@@ -16,7 +16,9 @@
 		371B9BE621DA9E2200621D83 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BE521DA9E2200621D83 /* Album.swift */; };
 		371B9BEB21DBF28500621D83 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BEA21DBF28400621D83 /* AlbumService.swift */; };
 		371DB11721DC0B8900CD756A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BB621DA982800621D83 /* MasterViewController.swift */; };
-		371DB11821DC0B9200CD756A /* AlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BE821DAA09C00621D83 /* AlbumsViewModel.swift */; };
+		371DB11821DC0B9200CD756A /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B9BE821DAA09C00621D83 /* AlbumListViewModel.swift */; };
+		371DB11A21DC116D00CD756A /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371DB11921DC116D00CD756A /* AlbumViewModel.swift */; };
+		371DB11C21DC133B00CD756A /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371DB11B21DC133B00CD756A /* AlbumTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +53,10 @@
 		371B9BD621DA982B00621D83 /* TopAlbumsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlbumsUITests.swift; sourceTree = "<group>"; };
 		371B9BD821DA982B00621D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		371B9BE521DA9E2200621D83 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
-		371B9BE821DAA09C00621D83 /* AlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewModel.swift; sourceTree = "<group>"; };
+		371B9BE821DAA09C00621D83 /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		371B9BEA21DBF28400621D83 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
+		371DB11921DC116D00CD756A /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
+		371DB11B21DC133B00CD756A /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +148,8 @@
 		371B9BE721DAA01100621D83 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				371B9BE821DAA09C00621D83 /* AlbumsViewModel.swift */,
+				371B9BE821DAA09C00621D83 /* AlbumListViewModel.swift */,
+				371DB11921DC116D00CD756A /* AlbumViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 			children = (
 				371B9BB621DA982800621D83 /* MasterViewController.swift */,
 				371B9BB821DA982800621D83 /* DetailViewController.swift */,
+				371DB11B21DC133B00CD756A /* AlbumTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -290,10 +296,12 @@
 			files = (
 				371B9BB921DA982800621D83 /* DetailViewController.swift in Sources */,
 				371B9BB521DA982800621D83 /* AppDelegate.swift in Sources */,
-				371DB11821DC0B9200CD756A /* AlbumsViewModel.swift in Sources */,
+				371DB11821DC0B9200CD756A /* AlbumListViewModel.swift in Sources */,
+				371DB11A21DC116D00CD756A /* AlbumViewModel.swift in Sources */,
 				371DB11721DC0B8900CD756A /* MasterViewController.swift in Sources */,
 				371B9BE621DA9E2200621D83 /* Album.swift in Sources */,
 				371B9BEB21DBF28500621D83 /* AlbumService.swift in Sources */,
+				371DB11C21DC133B00CD756A /* AlbumTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
