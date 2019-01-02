@@ -22,9 +22,8 @@ class DetailViewController: UIViewController {
     }
     
     private func addCustomViews() {
-        let albumImageView = UIImageView(image: image)
-        albumImageView.contentMode = .scaleAspectFit
-        albumImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+        
+        let albumImageView = createAlbumImageView()
 
         let albumNameLabel = createLabel(text: viewModel.name,
                                          textStyle: .title1)
@@ -64,6 +63,16 @@ class DetailViewController: UIViewController {
         
         view.addSubview(stackView)
 
+        setupStackViewConstraints(stackView)
+    }
+    
+    @objc private func openMusicApp() {
+        if let url = URL(string: viewModel.albumUrl), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    private func setupStackViewConstraints(_ stackView: UIStackView) {
         stackView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         stackView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                                               constant: -20.0).isActive = true
@@ -72,10 +81,23 @@ class DetailViewController: UIViewController {
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.0).isActive = true
     }
     
-    @objc private func openMusicApp() {
-        if let url = URL(string: viewModel.albumUrl), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    private func createAlbumImageView() -> UIImageView {
+        let albumImageView = UIImageView(image: image)
+        albumImageView.contentMode = .scaleAspectFit
+        albumImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
+        
+        if image == nil {
+            AlbumService().fetchAlbumImage(url: viewModel.imageUrl) { [weak albumImageView] (data) in
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        albumImageView?.image = image
+                        albumImageView?.setNeedsLayout()
+                    }
+                }
+            }
         }
+        
+        return albumImageView
     }
     
     /// Helper function for creating labels. Text is required.
