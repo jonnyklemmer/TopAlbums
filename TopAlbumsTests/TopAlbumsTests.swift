@@ -20,7 +20,10 @@ class TopAlbumsTests: XCTestCase {
                                                       releaseDate: "releaseDate",
                                                       name: "name",
                                                       copyright: "copyright",
-                                                      genres: [Genre(genreId: "genreId", name: "genre-name")], artworkUrl100: "artworkUrl100", url: "url"))
+                                                      genres: [Genre(genreId: "genreId", name: "genre-name"),
+                                                               Genre(genreId: "genreId2", name: "genre-name2")],
+                                                      artworkUrl100: "artworkUrl100",
+                                                      url: "url"))
         viewModel = AlbumListViewModel(albumViewModels: [albumVM])
     }
 
@@ -40,10 +43,10 @@ class TopAlbumsTests: XCTestCase {
         
         XCTAssertEqual(albumVM.artistName, "artistName")
         XCTAssertEqual(albumVM.releaseDate, "releaseDate")
-        XCTAssertEqual(albumVM.name, "name")
+        XCTAssertEqual(albumVM.albumName, "name")
         XCTAssertEqual(albumVM.copyright, "copyright")
         
-        XCTAssertEqual(albumVM.genres, ["genre-name"])
+        XCTAssertEqual(albumVM.genres, "genre-name, genre-name2")
         XCTAssertEqual(albumVM.imageUrl, "artworkUrl100")
     }
 

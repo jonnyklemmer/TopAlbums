@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
         
         let albumImageView = createAlbumImageView()
 
-        let albumNameLabel = createLabel(text: viewModel.name,
+        let albumNameLabel = createLabel(text: viewModel.albumName,
                                          textStyle: .title1)
 
         let artistNameLabel = createLabel(text: viewModel.artistName,
@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
         let releaseDateLabel = createLabel(text: viewModel.releaseDate,
                                            color: .lightGray)
         
-        let genreLabel = createLabel(text: viewModel.genres.joined(separator: ", "),
+        let genreLabel = createLabel(text: viewModel.genres,
                                          color: .lightGray)
 
         let copyrightLabel = createLabel(text: viewModel.copyright,

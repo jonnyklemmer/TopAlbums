@@ -67,7 +67,7 @@ class MasterViewController: UITableViewController {
         }
         
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(albumVM.name)\n\(albumVM.artistName)"
+        cell.textLabel?.text = "\(albumVM.albumName)\n\(albumVM.artistName)"
         
         if let image = imageCache[albumVM.imageUrl] {
             cell.imageView?.image = image
