@@ -86,14 +86,13 @@ class DetailViewController: UIViewController {
         let albumImageView = UIImageView(image: image)
         albumImageView.contentMode = .scaleAspectFit
         albumImageView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
-        
-        if image == nil {
-            AlbumService().fetchAlbumImage(url: viewModel.imageUrl) { [weak albumImageView] (data) in
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        albumImageView?.image = image
-                        albumImageView?.setNeedsLayout()
-                    }
+
+        // Async load the higher quality image
+        AlbumService().fetchAlbumImage(url: viewModel.imageUrl) { [weak albumImageView] (data) in
+            if let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    albumImageView?.image = image
+                    albumImageView?.setNeedsLayout()
                 }
             }
         }

@@ -15,8 +15,19 @@ struct AlbumViewModel {
     let copyright: String
     
     let genres: String
-    let imageUrl: String
+    let thumbnailUrl: String
     let albumUrl: String
+
+    /// HACK: Leverage Apple image URL APIs to fetch a higher resolution
+    /// album artwork image URL. Likely to break in the future 🔥
+    var imageUrl: String {
+        guard thumbnailUrl.contains("100x100") else {
+            // Fallback to thumbnail URL
+            return thumbnailUrl
+        }
+
+        return thumbnailUrl.replacingOccurrences(of: "100x100", with: "400x400")
+    }
     
     init(withAlbum album: Album) {
         self.artistName = album.artistName
@@ -25,7 +36,7 @@ struct AlbumViewModel {
         self.copyright = album.copyright ?? ""
         
         self.genres = album.genres.map { $0.name }.joined(separator: ", ")
-        self.imageUrl = album.artworkUrl100
+        self.thumbnailUrl = album.artworkUrl100
         self.albumUrl = album.url
     }
 }

@@ -69,13 +69,13 @@ class MasterViewController: UITableViewController {
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "\(albumVM.albumName)\n\(albumVM.artistName)"
         
-        if let image = imageCache[albumVM.imageUrl] {
+        if let image = imageCache[albumVM.thumbnailUrl] {
             cell.imageView?.image = image
             cell.setNeedsLayout()
         } else {
-            AlbumService().fetchAlbumImage(url: albumVM.imageUrl) { [weak self, weak cell] (data) in
+            AlbumService().fetchAlbumImage(url: albumVM.thumbnailUrl) { [weak self, weak cell] (data) in
                 if let image = UIImage(data: data) {
-                    self?.imageCache[albumVM.imageUrl] = image
+                    self?.imageCache[albumVM.thumbnailUrl] = image
                     DispatchQueue.main.async {
                         cell?.imageView?.image = image
                         cell?.setNeedsLayout()
@@ -96,7 +96,7 @@ class MasterViewController: UITableViewController {
         
         let detailViewController = DetailViewController()
         detailViewController.viewModel = albumVM
-        detailViewController.image = imageCache[albumVM.imageUrl]
+        detailViewController.image = imageCache[albumVM.thumbnailUrl]
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
