@@ -13,7 +13,7 @@ struct Album: Codable {
     let id: String
     let releaseDate: String
     let name: String
-    let copyright: String
+    let copyright: String?
     
     let genres: [Genre]
     

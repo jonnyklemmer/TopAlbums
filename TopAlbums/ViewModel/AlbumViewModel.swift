@@ -22,7 +22,7 @@ struct AlbumViewModel {
         self.artistName = album.artistName
         self.releaseDate = album.releaseDate
         self.albumName = album.name
-        self.copyright = album.copyright
+        self.copyright = album.copyright ?? ""
         
         self.genres = album.genres.map { $0.name }.joined(separator: ", ")
         self.imageUrl = album.artworkUrl100

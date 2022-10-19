@@ -13,7 +13,7 @@ typealias AlbumImageDataCompletionHandler = (Data) -> Void
 
 struct AlbumService {
     func fetchAlbums(completionHandler: @escaping AlbumsCompletionHandler) {
-        guard let url = URL(string: "https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/100/explicit.json") else {
+        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/us/music/most-played/100/albums.json") else {
             print("Failed fetch albums when parsing string into URL.")
             return
         }
